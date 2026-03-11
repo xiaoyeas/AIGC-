@@ -1,0 +1,53 @@
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# 编辑器文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 构建产物
+aigc-backend/target/
+aigc-frontend/dist/
+
+# 依赖包
+aigc-frontend/node_modules/
+
+# 环境变量文件
+.env
+.env.local
+.env.*.local
+
+# 本地生成的文件
+aigc-images/
+upload/
+
+# 日志文件
+logs/
+*.log
+
+# 临时文件
+tmp/
+temp/
+
+# IDE 相关
+.project
+.classpath
+.settings/
+
+# Maven 相关
+.mvn/
+
+# Gradle 相关（如果使用）
+.gradle/
+build/
+
+# 测试覆盖报告
+coverage/
+
+# 本地配置文件
+application-dev.yml
+application-test.yml

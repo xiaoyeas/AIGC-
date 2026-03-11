@@ -1,0 +1,97 @@
+# ==================== 服务配置 ====================
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+# ==================== Spring 基础配置 ====================
+spring:
+  application:
+    name: aigc-backend
+  
+  # 数据源配置 - MySQL
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/videodb?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root # 请根据实际情况修改用户名
+    password: 251016 # 请根据实际情况修改密码
+  
+  # 文件上传配置
+  servlet:
+    multipart:
+      enabled: true # 启用文件上传
+      max-file-size: 50MB # 最大文件大小
+      max-request-size: 50MB # 最大请求大小
+      file-size-threshold: 0
+  
+  # Redis 缓存配置
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: 
+      database: 0
+      timeout: 10000ms
+      lettuce:
+        pool:
+          max-active: 8
+          max-wait: -1ms
+          max-idle: 8
+          min-idle: 0
+  
+  # Spring AI 配置 - 用于 CogView-3-Flash 文生图
+  # 注意：请根据实际情况修改 api-key 和 base-url
+  #配置优先从数据库读取
+  ai:
+    openai:
+      api-key: ${ZHIPU_API_KEY:你得 API Key}
+      base-url: ${ZHIPU_BASE_URL:你得 Base URL} # 智谱 AI 接口基础 URL 
+      image:
+        options:
+          model: cogview-3-flash
+          size: 1024x1024
+
+# ==================== MyBatis-Plus 配置 ====================
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  mapper-locations: classpath:mapper/*.xml
+
+# ==================== 日志配置 ====================
+logging:
+  level:
+    com.aigc: debug
+    org.springframework.ai: debug
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+
+# ==================== AIGC 自定义配置 ====================
+aigc:
+  # 文生图相关配置
+  image:
+    save-path: d:/雷神/Desktop/AIGC/AIGC_Vido/aigc-images # 图片/视频保存根路径
+    default-size: 1024x1024
+    model: cogview-3-flash
+  # 图片上传配置
+  upload:
+    path: d:/雷神/Desktop/AIGC/AIGC_Vido/upload/images # 图片上传路径
+  # 服务公网访问地址（用于生成外部可访问的图片URL）
+  # 注意：请将此地址替换为你的实际公网访问地址或内网穿透地址
+  # 例如：https://your-domain.com 或 http://xxx.ngrok.io
+  server:
+    public-url: 内网穿透映射地址 # 服务公网访问地址 优先从数据库获取
+  # CogView 文生图模型独立配置（备用）
+  cogview:
+    api-key: ${ZHIPU_API_KEY:你得 API Key} 
+    base-url: ${ZHIPU_BASE_URL:你得 Base URL} # 智谱 AI 接口基础 URL 
+  # CogVideo 视频生成模型独立配置
+  cogvideo:
+    api-key: ${ZHIPU_VIDEO_API_KEY:你得 Video API Key}
+    base-url: ${ZHIPU_VIDEO_BASE_URL:你得 Video Base URL} # 智谱 AI 视频接口基础 URL 
