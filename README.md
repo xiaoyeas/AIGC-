@@ -4,9 +4,9 @@ AIGC多模态内容生成工具
  
 项目结构
  
-- 前端实现：查看前端README("aigc-frontend/README.md")
+- 前端实现：[查看前端README]("aigc-frontend/README.md")
 
-- 后端实现：查看后端README("aigc-backend/README.md")
+- 后端实现：[查看后端README]("aigc-backend/README.md")
  
 快速启动
  
