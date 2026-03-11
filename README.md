@@ -9,11 +9,11 @@ AIGC多模态内容生成工具
 - 后端实现：[查看后端README](aigc-backend/README.md)
  
 快速启动
- 
+ （启动前你需要先看后端README进行配置）
 1. 启动后端服务：进入aigc-backend文件夹，运行启动后端.bat
 
 2. 启动前端服务：进入aigc-frontend文件夹，运行启动前端.bat
 
-3. 浏览器访问localhost:5173即可使用
+3. 浏览器访问localhost:3000即可使用
  
 你可以根据实际情况修改端口号和启动说明。
